@@ -5,6 +5,9 @@ import CommonList from "../components/CommonList";
 const HomeScreen = () => {
   const [loading, setLoading] = useState(false);
   const [productData, setProductData] = useState({});
+  const [searchText, setSearchText] = useState("");
+  const [searchedResults, setSearchedResults] = useState(null);
+  const [searchTimeout, setSearchTimeout] = useState(null);
 
   const fetchPosts = async (limit, skip) => {
     setLoading(true);
@@ -49,6 +52,23 @@ const HomeScreen = () => {
     );
   };
 
+  const handleSearchChange = (e) => {
+    clearTimeout(searchTimeout);
+    setSearchText(e.target.value);
+
+    setSearchTimeout(
+      setTimeout(() => {
+        const searchResults = productData?.products?.filter(
+          (item) =>
+            item?.title.toLowerCase().includes(searchText.toLowerCase()) ||
+            item?.description.toLowerCase().includes(searchText.toLowerCase())
+        );
+
+        setSearchedResults(searchResults);
+      }, 500)
+    );
+  };
+
   useEffect(() => {
     fetchPosts(20, 0);
   }, []);
@@ -60,52 +80,84 @@ const HomeScreen = () => {
           <div className="spinner"></div>
         </div>
       ) : (
-        <div className="main-container">
-          {productData?.products?.map((ele, idx) => (
-            <Link
-              to={`/detailed-view/${ele?.id}`}
-              state={{ detailedData: ele }}
-              key={idx}
-              className="list-click"
-            >
-              <CommonList
-                imgURL={ele.thumbnail}
-                title={ele?.title}
-                description={ele?.description}
-                price={ele?.price}
-                discount={ele?.discountPercentage}
-                rating={ele?.rating}
-              />
-            </Link>
-          ))}
-
-          <div className="btn-container">
-            <button
-              onClick={handleClickFirst}
-              className="first-last-btn btn"
-            >
-              First
-            </button>
-            <button
-              onClick={handleClickPrev}
-              className="prev-next-btn btn"
-            >
-              Prev
-            </button>
-            <button
-              onClick={handleClickNext}
-              className="prev-next-btn btn"
-            >
-              Next
-            </button>
-            <button
-              onClick={handleClickLast}
-              className="first-last-btn"
-            >
-              Last
-            </button>
+        <React.Fragment>
+          <header style={{ justifyContent: "space-around" }}>
+            <div className="title main-title">Products List</div>
+            <input
+              type="text"
+              name="text"
+              placeholder="Search Product"
+              value={searchText}
+              onChange={handleSearchChange}
+            />
+          </header>
+          <div className="main-container">
+            {searchText ? (
+              <React.Fragment>
+                {searchedResults?.map((ele, idx) => (
+                  <Link
+                    to={`/detailed-view/${ele?.id}`}
+                    state={{ detailedData: ele }}
+                    key={idx}
+                    className="list-click"
+                  >
+                    <CommonList
+                      imgURL={ele.thumbnail}
+                      title={ele?.title}
+                      description={ele?.description}
+                      price={ele?.price}
+                      discount={ele?.discountPercentage}
+                      rating={ele?.rating}
+                    />
+                  </Link>
+                ))}
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                {productData?.products?.map((ele, idx) => (
+                  <Link
+                    to={`/detailed-view/${ele?.id}`}
+                    state={{ detailedData: ele }}
+                    key={idx}
+                    className="list-click"
+                  >
+                    <CommonList
+                      imgURL={ele.thumbnail}
+                      title={ele?.title}
+                      description={ele?.description}
+                      price={ele?.price}
+                      discount={ele?.discountPercentage}
+                      rating={ele?.rating}
+                    />
+                  </Link>
+                ))}
+                <div className="btn-container">
+                  <button
+                    onClick={handleClickFirst}
+                    className="first-last-btn btn"
+                  >
+                    First
+                  </button>
+                  <button
+                    onClick={handleClickPrev}
+                    className="prev-next-btn btn"
+                  >
+                    Prev
+                  </button>
+                  <button
+                    onClick={handleClickNext}
+                    className="prev-next-btn btn"
+                  >
+                    Next
+                  </button>
+                  <button onClick={handleClickLast} className="first-last-btn">
+                    Last
+                  </button>
+                </div>
+              </React.Fragment>
+            )}
           </div>
-        </div>
+        </React.Fragment>
       )}
     </div>
   );

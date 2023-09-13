@@ -1,0 +1,319 @@
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=PT+Serif:ital,wght@0,400;1,700&family=Poppins:wght@400;600&display=swap);
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.loader-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.834);
+  z-index: 1;
+}
+
+.spinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #3d5af1 transparent #3d5af1 transparent;
+  border-radius: 50%;
+  animation: spin-anim 1.2s linear infinite;
+}
+
+@keyframes spin-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.main-container {
+  padding-top: 10px;
+  padding-bottom: 80px;
+  background-color: #fff3da;
+}
+
+.list-click {
+  text-decoration: none;
+  color: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  width: 70%;
+}
+
+.list-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border: 1px solid #000000;
+  box-shadow: 1px 1px 5px #747474;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  width: 100%;
+}
+
+.img-title-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+
+.list-img-conatiner {
+  width: 150px;
+  height: 100px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px #747474;
+  margin-right: 30px;
+}
+
+.list-img {
+  width: 150px;
+  height: 100px;
+  object-fit: fill;
+  border-radius: 10px;
+}
+
+.text-container {
+  width: 80%;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.description {
+  font-size: 1rem;
+  font-family: Poppins, sans-serif;
+  font-weight: 400;
+}
+
+.price {
+  font-size: 1.2rem;
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+  color: blue;
+}
+
+.discount {
+  font-size: 0.8rem;
+  color: white;
+  background-color: red;
+  padding: 5px;
+  margin-left: 10px;
+  border-radius: 50px;
+}
+
+.rating {
+  font-size: 1rem;
+  font-family: Poppins, sans-serif;
+  font-weight: 400;
+  color: goldenrod;
+}
+
+.rate {
+  background-color: rgba(230, 233, 79, 0.822);
+  color: #000000;
+}
+
+.btn-container {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background-color: #00000088;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.btn {
+  margin-right: 10px;
+}
+
+.first-last-btn {
+  background-color: #1a73e8;
+  color: white;
+  font-size: 20px;
+  padding: 10px 30px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.prev-next-btn {
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+header {
+  background-color: hotpink;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.main-title {
+  margin-left: 30px;
+  color: white;
+  position: sticky;
+}
+
+.back-btn {
+  font-size: 50px;
+  color: white;
+}
+
+.main-content {
+  display: flex;
+  padding: 0 10px;
+  align-items: center;
+}
+
+.image-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.large-img {
+  height: 500px;
+  width: 700px;
+  object-fit: fill;
+  margin-bottom: 20px;
+  border-radius: 12px;
+}
+
+.small-img {
+  height: 120px;
+  width: 150px;
+  object-fit: fill;
+  border-radius: 12px;
+  border: 1px solid #000000;
+}
+
+.description-container {
+  margin: 60px 10px 10px 30px;
+}
+
+.price-view {
+  font-size: 2rem;
+}
+
+.title-view {
+  margin-top: 10px;
+}
+
+@media (max-width: 1070px) {
+  .list-click {
+    width: 100%;
+  }
+
+  .list-container {
+    padding: 5px;
+    width: 90%;
+  }
+
+  .list-img-conatiner {
+    width: 100px;
+    height: 60px;
+    margin-right: 6px;
+  }
+
+  .list-img {
+    width: 100px;
+    height: 60px;
+    border-radius: 6px;
+  }
+
+  .text-container {
+    width: 80%;
+  }
+
+  .title {
+    font-size: 0.9rem;
+  }
+
+  .description {
+    font-size: 0.6rem;
+  }
+
+  .price {
+    font-size: 0.9rem;
+    font-family: Poppins, sans-serif;
+    font-weight: 600;
+    color: blue;
+  }
+
+  .discount {
+    font-size: 0.6rem;
+    margin-left: 5px;
+  }
+
+  .rating {
+    font-size: 0.9rem;
+  }
+
+  .btn-container {
+    bottom: 10px;
+    right: 0;
+    left: 0;
+    text-align: center;
+    margin: 0 10px;
+    padding: 5px;
+    background-color: #00000088;
+  }
+
+  .image-container {
+    margin-top: 10px;
+  }
+
+  .main-content {
+    flex-direction: column;
+  }
+
+  .large-img {
+    height: 200px;
+    width: 250px;
+  }
+
+  .small-img {
+    height: 80px;
+    width: 120px;
+  }
+
+  .description-container {
+    margin: 20px 10px 10px 10px;
+  }
+
+  .price-view {
+    font-size: 2rem;
+  }
+}
